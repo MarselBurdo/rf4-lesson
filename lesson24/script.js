@@ -8,10 +8,12 @@ let page = 1;
 let perPage = 10;
 
 const getOffset = () => {
+  /** считаем интервал данных для отображения */
   return (page - 1) * perPage;
 };
 
 const allPokemonsRender = (infoArray) => {
+  /** отрисовываем карточки покемонов */
   const pokemons = infoArray.map(
     (el, index) => `
     <div class="card">
@@ -27,6 +29,7 @@ const allPokemonsRender = (infoArray) => {
 };
 
 const allPaginationRender = (infoCount) => {
+  /** отрисовываем пагинацию */
   const pages = Math.ceil(infoCount / perPage);
   const numbers = Array(pages)
     .fill(0)
@@ -57,6 +60,7 @@ const allPaginationRender = (infoCount) => {
 };
 
 const getPokemons = () => {
+  /** получаем данные со сторонеей API */
   api
     .get(perPage, getOffset())
     .then((res) => res.json())
@@ -70,12 +74,15 @@ const getPokemons = () => {
 getPokemons();
 
 paginationDiv.addEventListener("click", (event) => {
+  /** работа пагинации */
+
   if (event.target === event.currentTarget) return;
   page = Number(event.target.textContent);
   getPokemons();
 });
 
 selectLimit.addEventListener("change", (e) => {
+  /** работа лимита отображения */
   page = 1;
   perPage = Number(e.target.value);
   getPokemons();
