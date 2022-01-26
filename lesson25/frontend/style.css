@@ -1,0 +1,18 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px dashed tomato;
+  font-family: monospace;
+  margin: 20px 10px;
+  padding: 20px 20px;
+  background-color: blueviolet;
+}
+.card span {
+  font-size: 25px;
+}
+.restaurants {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
