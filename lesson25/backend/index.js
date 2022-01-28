@@ -76,7 +76,7 @@ app.get("/", (req, res) => {
 
 // GET all restaurants
 app.get("/restarants", (req, res) => {
-  res.json(restaurants);
+  res.json(restaurants.reverse());
 });
 
 //DELETE one restaurant
@@ -85,7 +85,7 @@ app.delete("/restarants/:id", (req, res) => {
 
   restaurants = restaurants.filter((el) => el.id !== id);
 
-  console.log(req.params);
+  res.json("super");
 });
 
 app.put("/restarants/:id", (req, res) => {
@@ -101,7 +101,16 @@ app.put("/restarants/:id", (req, res) => {
 });
 
 app.post("/restarants", (req, res) => {
-  res.json(restaurants);
+  const { name, rate } = req.body;
+
+  restaurants.push({
+    name,
+    rate,
+    cool: true,
+    id: uuidv4(),
+  });
+  // res.json("POST");
+  res.json('{ "name": "POST" }');
 });
 
 app.listen(PORT, () => {
